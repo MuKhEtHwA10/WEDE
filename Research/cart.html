@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Kaya Home & Living · Cart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="external.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -112,22 +114,28 @@
 <div class="container">
     <div id="toast" class="toast-message"></div>
 
-    <div class="nav-bar">
-        <div class="nav-logo"><i class="fas fa-leaf"></i> Kaya</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="about.html">About</a>
-            <a href="visit.html">Visit</a>
-            <a href="journal.html">Journal</a>
-            <a href="track.html">Track</a>
-        </div>
-        <div class="nav-icons">
-            <i class="fas fa-search" style="cursor:pointer;"></i>
-            <i class="fas fa-user" style="cursor:pointer;"></i>
-            <a href="cart.html" class="active"><i class="fas fa-shopping-bag"></i></a> <span class="badge-cart">3</span>
-        </div>
+  <div class="nav-bar">
+    <div class="nav-logo"><i class="fas fa-leaf"></i> Kaya</div>
+    
+    <!-- Hamburger Button for Mobile -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
     </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="visit.html">Visit</a>
+        <a href="journal.html">Journal</a>
+        <a href="track.html">Track</a>
+    </div>
+    <div class="nav-icons">
+        <i class="fas fa-search" style="cursor:pointer;"></i>
+        <i class="fas fa-user" style="cursor:pointer;"></i>
+        <a href="cart.html"><i class="fas fa-shopping-bag"></i></a> <span class="badge-cart">0</span>
+    </div>
+</div>
 
     <div class="breadcrumb">
         <a href="index.html">Home</a> <span>/</span>
@@ -149,16 +157,16 @@
         <div class="checkout-grid">
             <div class="checkout-form">
                 <div class="form-row">
-                    <div class="form-group"><label>First name</label><input type="text" id="firstName" value="Thandi" placeholder="First name"></div>
-                    <div class="form-group"><label>Last name</label><input type="text" id="lastName" value="Nkosi" placeholder="Last name"></div>
+                    <div class="form-group"><label>First name</label><input type="text" id="firstName" value="" placeholder="First name"></div>
+                    <div class="form-group"><label>Last name</label><input type="text" id="lastName" value="" placeholder="Last name"></div>
                 </div>
-                <div class="form-group"><label>Email address</label><input type="email" id="email" value="thandi@kaya.co.za" placeholder="Email"></div>
-                <div class="form-group"><label>Phone number</label><input type="tel" id="phone" value="082 123 4567" placeholder="Phone"></div>
-                <div class="form-group"><label>Delivery address</label><input type="text" id="address" value="44 Bree Street, Johannesburg, 2001" placeholder="Street address"></div>
+                <div class="form-group"><label>Email address</label><input type="email" id="email" value="" placeholder="Email"></div>
+                <div class="form-group"><label>Phone number</label><input type="tel" id="phone" value="" placeholder="Phone"></div>
+                <div class="form-group"><label>Delivery address</label><input type="text" id="address" value="" placeholder="Street address"></div>
                 <div class="form-row">
-                    <div class="form-group"><label>City</label><input type="text" id="city" value="Johannesburg"></div>
-                    <div class="form-group"><label>Province</label><select id="province"><option>Gauteng</option><option>Western Cape</option><option>KwaZulu-Natal</option></select></div>
-                    <div class="form-group"><label>Postal code</label><input type="text" id="postal" value="2001"></div>
+                    <div class="form-group"><label>City</label><input type="text" id="city" value=""></div>
+                    <div class="form-group"><label>Province</label><select id="province"><option>Gauteng</option><option>Western Cape</option><option>KwaZulu-Natal</option><option>Eastern Cape</option></select></div>
+                    <div class="form-group"><label>Postal code</label><input type="text" id="postal" value=""></div>
                 </div>
                 <div class="form-group">
                     <label>Payment method</label>
@@ -237,9 +245,10 @@
         cart.forEach((item, index) => {
             const total = item.price * item.quantity;
             subtotal += total;
+            const imageSrc = item.image || 'Images/rug.jpg.avif?fit=crop';
             itemsHtml += `
                 <div class="cart-item">
-                    <div class="item-img"><img src="https://images.unsplash.com/photo-1585416358438-0f6c8f5f8d1b?w=80&h=80&fit=crop" alt="${item.product}"></div>
+                    <div class="item-img"><img src="${imageSrc}" alt="${item.product}"></div>
                     <div class="item-details">
                         <h4>${item.product}</h4>
                         <div class="item-meta">R${item.price} each</div>
@@ -362,6 +371,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', renderCart);
+</script>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('navLinks');
+        nav.classList.toggle('active');
+    }
+
+    // Rest of your existing JS (addToCart, showToast, etc.)
 </script>
 </body>
 </html>
