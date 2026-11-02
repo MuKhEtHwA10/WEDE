@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.kayahomeandliving.co.za/sitemap.xml
