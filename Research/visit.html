@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Kaya Home & Living · Visit Us</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="external.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -64,22 +66,28 @@
 </head>
 <body>
 <div class="container">
-    <div class="nav-bar">
-        <div class="nav-logo"><i class="fas fa-leaf"></i> Kaya</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="about.html">About</a>
-            <a href="visit.html" class="active">Visit</a>
-            <a href="journal.html">Journal</a>
-            <a href="track.html">Track</a>
-        </div>
-        <div class="nav-icons">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-user"></i>
-            <i class="fas fa-shopping-bag"></i> <span class="badge-cart">3</span>
-        </div>
+   <div class="nav-bar">
+    <div class="nav-logo"><i class="fas fa-leaf"></i> Kaya</div>
+    
+    <!-- Hamburger Button for Mobile -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
     </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="visit.html">Visit</a>
+        <a href="journal.html">Journal</a>
+        <a href="track.html">Track</a>
+    </div>
+    <div class="nav-icons">
+        <i class="fas fa-search" style="cursor:pointer;"></i>
+        <i class="fas fa-user" style="cursor:pointer;"></i>
+        <a href="cart.html"><i class="fas fa-shopping-bag"></i></a> <span class="badge-cart">0</span>
+    </div>
+</div>
 
     <div class="breadcrumb">
         <a href="index.html">Home</a> <span>/</span>
@@ -91,28 +99,33 @@
         <p>Come see our collection in person — we'd love to meet you.</p>
     </div>
 
-    <div class="visit-card">
-        <div class="visit-info">
-            <h2>Kaya Home &amp; Living</h2>
-            <p><i class="fas fa-store"></i> 44 Bree Street, Johannesburg CBD</p>
-            <p><i class="fas fa-clock"></i> Mon–Sat: 9:00 – 18:00 · Sun: 10:00 – 15:00</p>
-            <p><i class="fas fa-phone"></i> 011 234 5678</p>
-            <p><i class="fas fa-envelope"></i> hello@kayahome.co.za</p>
-            <p><i class="fas fa-parking"></i> Free parking available on-site</p>
-            <span class="hero-btn"><i class="fas fa-directions"></i> Get directions</span>
-        </div>
-        <div class="visit-map"><i class="fas fa-map"></i> Google Map</div>
+   <div class="visit-card">
+    <div class="visit-info">
+        <h2>Kaya Home & Living</h2>
+        <p><i class="fas fa-store"></i> 44 Bree Street, Johannesburg CBD</p>
+        <p><i class="fas fa-clock"></i> Mon–Sat: 9:00 – 18:00 · Sun: 10:00 – 15:00</p>
+        <p><i class="fas fa-phone"></i> 011 234 5678</p>
+        <p><i class="fas fa-envelope"></i> hello@kayahome.co.za</p>
+        <p><i class="fas fa-parking"></i> Free parking available on-site</p>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=44+Bree+Street+Johannesburg" target="_blank" rel="noopener noreferrer" class="hero-btn">
+            <i class="fas fa-directions"></i> Get directions
+        </a> 
+    </div>
+    
+    <div class="visit-map" style="overflow: hidden; border-radius: 28px;">
+        <!-- Standard Google Maps Embed -->
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.754967156317!2d28.03988531502789!3d-26.20410298346204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950ea6d2b9d49b%3A0x6b8c4e5f6a7b8c9d!2s44%20Bree%20St%2C%20Johannesburg%2C%200001!5e0!3m2!1sen!2sza!4v1620000000000!5m2!1sen!2sza" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
     </div>
 
-    <div class="featured-products">
-        <h2>In-store favourites</h2>
-        <div class="card-grid">
-            <div class="product-card"><div class="img"><i class="fas fa-rug"></i></div><h4>Handwoven rug</h4><div class="price">R1,250</div><span class="btn-quick">Quick add</span></div>
-            <div class="product-card"><div class="img"><i class="fas fa-lamp"></i></div><h4>Terracotta lamp</h4><div class="price">R890</div><span class="btn-quick">Quick add</span></div>
-            <div class="product-card"><div class="img"><i class="fas fa-basket"></i></div><h4>Palm basket</h4><div class="price">R540</div><span class="btn-quick">Quick add</span></div>
-            <div class="product-card"><div class="img"><i class="fas fa-mug-saucer"></i></div><h4>Clay mug set</h4><div class="price">R320</div><span class="btn-quick">Quick add</span></div>
-        </div>
-    </div>
 
     <div class="footer">
         <div><i class="fas fa-leaf" style="color:#c1663d;"></i> Kaya Home &amp; Living · 44 Bree St, Johannesburg</div>
@@ -124,5 +137,13 @@
         <div><span style="margin-right:1rem;">NPO: 2024/123456/08</span> © 2026</div>
     </div>
 </div>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('navLinks');
+        nav.classList.toggle('active');
+    }
+
+    // Rest of your existing JS (addToCart, showToast, etc.)
+</script>
 </body>
 </html>
