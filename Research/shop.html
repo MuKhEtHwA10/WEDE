@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Kaya Home & Living · Shop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="external.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #f9f6f1; font-family: 'Inter', sans-serif; color: #2b2b2b; padding: 1.5rem; line-height: 1.5; }
@@ -101,22 +103,28 @@
 <div class="container">
     <div id="toast" class="toast-message"></div>
 
-    <div class="nav-bar">
-        <div class="nav-logo"><i class="fas fa-leaf"></i> Kaya</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html" class="active">Shop</a>
-            <a href="about.html">About</a>
-            <a href="visit.html">Visit</a>
-            <a href="journal.html">Journal</a>
-            <a href="track.html">Track</a>
-        </div>
-        <div class="nav-icons">
-            <i class="fas fa-search" style="cursor:pointer;"></i>
-            <i class="fas fa-user" style="cursor:pointer;"></i>
-            <a href="cart.html"><i class="fas fa-shopping-bag"></i></a> <span class="badge-cart">3</span>
-        </div>
+   <div class="nav-bar">
+    <div class="nav-logo"><i class="fas fa-leaf"></i> Kaya</div>
+    
+    <!-- Hamburger Button for Mobile -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
     </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="visit.html">Visit</a>
+        <a href="journal.html">Journal</a>
+        <a href="track.html">Track</a>
+    </div>
+    <div class="nav-icons">
+        <i class="fas fa-search" style="cursor:pointer;"></i>
+        <i class="fas fa-user" style="cursor:pointer;"></i>
+        <a href="cart.html"><i class="fas fa-shopping-bag"></i></a> <span class="badge-cart">0</span>
+    </div>
+</div>
 
     <div class="breadcrumb">
         <a href="index.html">Home</a> <span>/</span>
@@ -147,11 +155,11 @@
             <div>
                 <h4>Categories</h4>
                 <ul>
-                    <li onclick="filterProducts('all')">All <span class="count">(24)</span></li>
-                    <li onclick="filterProducts('Textiles')">Textiles <span class="count">(6)</span></li>
-                    <li onclick="filterProducts('Lighting')">Lighting <span class="count">(4)</span></li>
-                    <li onclick="filterProducts('Tableware')">Tableware <span class="count">(5)</span></li>
-                    <li onclick="filterProducts('Decor')">Decor <span class="count">(9)</span></li>
+                    <li onclick="filterProducts('all')">All <span class="count">(12)</span></li>
+                    <li onclick="filterProducts('Textiles')">Textiles <span class="count">(4)</span></li>
+                    <li onclick="filterProducts('Lighting')">Lighting <span class="count">(2)</span></li>
+                    <li onclick="filterProducts('Tableware')">Tableware <span class="count">(2)</span></li>
+                    <li onclick="filterProducts('Decor')">Decor <span class="count">(4)</span></li>
                 </ul>
             </div>
             <div>
@@ -303,11 +311,20 @@
     function addToCart(product, price) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const existing = cart.find(item => item.product === product);
+
+        const matchingCard = Array.from(document.querySelectorAll('.product-card')).find(card => {
+            const name = card.querySelector('h4')?.textContent.trim().toLowerCase();
+            return name === product.toLowerCase();
+        });
+        const image = matchingCard?.querySelector('img')?.src || '';
+
         if (existing) {
             existing.quantity += 1;
+            if (!existing.image && image) existing.image = image;
         } else {
-            cart.push({ product, price, quantity: 1 });
+            cart.push({ product, price, quantity: 1, image });
         }
+
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartBadge();
         showToast(`✓ ${product} added to cart (R${price})`);
@@ -385,6 +402,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', updateCartBadge);
+</script>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('navLinks');
+        nav.classList.toggle('active');
+    }
+
+    // Rest of your existing JS (addToCart, showToast, etc.)
 </script>
 </body>
 </html>
