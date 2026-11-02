@@ -1,5 +1,4 @@
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+ * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #f9f6f1; font-family: 'Inter', sans-serif; color: #2b2b2b; padding: 1.5rem; line-height: 1.5; }
         .container { max-width: 1300px; margin: 0 auto; }
 
@@ -489,3 +488,55 @@
         .footer .social i:hover { color: #c1663d; }
 
         @media (max-width: 700px) { .nav-links { display: none; } .visit-card { flex-direction: column; } .visit-map { height: 200px; } }
+        /* Hamburger hidden on desktop */
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #c1663d;
+}
+
+/* Mobile Navigation Fixes */
+@media (max-width: 820px) {
+    .nav-bar {
+        position: relative;
+        justify-content: space-between;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-radius: 20px;
+        padding: 1rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        z-index: 100;
+        border: 1px solid #efe6db;
+        margin-top: 10px;
+    }
+
+    .nav-links.active {
+        display: flex; /* Shows when hamburger is clicked */
+    }
+    
+    .nav-links a {
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid #f0e7df;
+        border-left: none;
+    }
+}
+#imageModal {
+    transition: opacity 0.3s ease;
+}
+#imageModal.show {
+    display: flex !important;
+    opacity: 1;
+}
